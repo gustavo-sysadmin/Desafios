@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  app1:
+    image: python:3.9-slim
+    command: >
+      sh -c "pip install --user flask flask-caching redis &&
+      python /app/app.py"
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app1.py:/app/app.py
+    depends_on:
+      - redis
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_DEBUG=1
+
+  app2:
+    image: node:18-alpine
+    command: >
+      sh -c "npm install express redis &&
+      node /app/server.js"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app2.js:/app/server.js
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
