@@ -49,11 +49,13 @@ docker-compose logs -f  # Monitoramento em tempo real
 
 5. Diagrama de Arquitetura
 
+```mermaid
 graph TD
 A[Usuário] --> B[Porta 5000: App Python]
 A --> C[Porta 3000: App Node]
 B & C --> D[Redis Cache]
 D --> E[(Persistência)]
+```
 
 6. Pontos de Melhoria Identificados
 
@@ -83,27 +85,15 @@ D --> E[(Persistência)]
 
 7. Fluxo de Atualização
 
-   graph LR
-    A[Git Push] --> B[CI: Build Images]
-    B --> C[Testes Automatizados]
-    C --> D[Deploy Staging]
-    D --> E[Testes Manuais]
-    E --> F[Rollout Production]
 
-Estrutura do Repositório
-/devops-2025/
-├── app1/               # Aplicação Python
-│   ├── app.py
-│   └── requirements.txt
-├── app2/               # Aplicação Node.js
-│   ├── server.js
-│   └── package.json
-├── infra/
-│   ├── docker-compose.yml
-│   └── README.md       # Instruções detalhadas
-└── docs/
-    ├── ARCHITECTURE.md # Diagramas e decisões
-    └── IMPROVEMENTS.md # Roadmap de melhorias
+```mermaid
+graph LR
+A[Git Push] --> B[CI: Build Images]
+B --> C[Testes Automatizados]
+C --> D[Deploy Staging]
+D --> E[Testes Manuais]
+E --> F[Rollout Production]
+```
 
 
 Como Executar
