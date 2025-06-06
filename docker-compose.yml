@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app1:
+    build: ./app1
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  app2:
+    build: ./app2
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - app1
+      - app2
+    restart: unless-stopped
